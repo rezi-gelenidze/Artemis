@@ -2,9 +2,9 @@ import os
 import re
 import shutil
 import subprocess
-import requests
 import zipfile
 import tarfile
+import urllib
 
 
 # path constants
@@ -103,7 +103,7 @@ myNewTemplate/
 ├── css/
 │   └── style.css
 ├── js/
-│	└── script.js
+│    └── script.js
 └── media/
     ├── background.png
     ├── icon.ico
@@ -112,26 +112,26 @@ myNewTemplate/
 
 supported media files:
 - image
-	- png
-	- gif
-	- jpeg/jpg
-	- webp
-	- svg
-	- ico
-	- bmp
+    - png
+    - gif
+    - jpeg/jpg
+    - webp
+    - svg
+    - ico
+    - bmp
 - video
-	- mp4
-	- ogv
-	- mov
-	- webm
+    - mp4
+    - ogv
+    - mov
+    - webm
 - audio
-	- m4a
-	- mp3
-	- wav
-	- aac
-	- ogg
+    - m4a
+    - mp3
+    - wav
+    - aac
+    - ogg
 - fonts
-	- ttf 
+    - ttf 
 """
 
 
@@ -160,6 +160,15 @@ def remove_prev_lines(n):
     cursor_up = '\x1b[1A'
     line_remove = '\x1b[2K'
     print((cursor_up + line_remove) * n)
+
+
+def empty_templates_check(templates):
+    """ check if templates are found """
+    if not templates:
+        print(colorize('red', 'No templates installed...'))
+        print(colorize('orange', 'Run "python3 artemis.py -a TEMPLATE_PATH" to add a new template.'))
+
+        exit()
 
 
 def validate_template_name(name):
@@ -250,9 +259,10 @@ def server_collectstatic(replace=False):
     else:
         print(colorize('red', 'error while deploying staticfiles.'))
         print(colorize(
-            'orange', 'Try running artemis manual deployment with "python3 artemis.py --deploy" or \n \
-            "python3 artemis_server/manage.py collectstatic" \n manually to deploy staticfiles for server (Optional)'
-        ))
+            'orange',
+             '''Try running artemis manual deployment with "python3 artemis.py --deploy" or 
+"python3 artemis_server manage.py collectstatic" \nmanually to deploy staticfiles for server (Optional)'''
+             ))
 
         return False
 
@@ -391,7 +401,7 @@ def add_template(original_template_path):
     deployed = server_collectstatic()
 
     if deployed:
-        print(colorize, 'Template imported successfully')
+        print(colorize('green', 'Template imported successfully'))
 
 
 def list_templates(argv):
@@ -401,6 +411,10 @@ def list_templates(argv):
 
     if len(argv) == 2:
         # if template is not specified, list all templates
+        
+        # check if templates are found
+        empty_templates_check(templates)
+
         print(colorize('orange', 'Installed templates:'))
 
         for template in templates:
@@ -474,13 +488,16 @@ def choose_template():
     # filter template dirs
     templates = [name for name in os.listdir(TEMPLATE_PATH) if os.path.isdir(os.path.join(TEMPLATE_PATH, name))]
 
-    # append only directories, which contains index.html basefile
+    # append only directories, which contains index.html base file
     for index, template in zip(range(len(templates)), templates):
         if 'index.html' in os.listdir(os.path.join(TEMPLATE_PATH, template)):
             available_templates[str(index)] = template
 
     # print menu
     print(colorize('orange', 'Choose template:\n'))
+
+    # check if templates are found
+    empty_templates_check(templates)
 
     for index, template in available_templates.items():
         print(f'\t[{index}] {template}')
@@ -510,7 +527,7 @@ def check_dependencies():
     try: 
         import django
         import whitenoise
-        import requests
+
     except ModuleNotFoundError:
         print("All required python packages are not installed. Press Enter to install:")
 
@@ -552,12 +569,9 @@ def check_dependencies():
         try:
             local_filename = url.split('/')[-1]
 
-            with requests.get(url, stream=True) as r:
-                r.raise_for_status()
-                with open(local_filename, 'wb') as f:
-                    for chunk in r.iter_content(chunk_size=8192): 
-                        f.write(chunk)
-        except requests.exceptions:
+            urllib.request.urlretrieve(url, local_filename)
+
+        except urllib.error.URLError:
             print(colorize('red', 'Some problem has occurred while downloading ngrok file.'))
             print('Terminating Artemis...')
 

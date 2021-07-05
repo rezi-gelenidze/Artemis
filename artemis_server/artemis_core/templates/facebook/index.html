@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href='{% static "facebook/media/icon.ico" %}'>
+    <link rel="stylesheet" href='{% static "facebook/css/style.css" %}'>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook - Log In or Sign Up</title>
+</head>
+<body>
+    <main>
+        <div class='wrapper'>
+            <div class='content-container'>
+                <div id='logo-section'>
+                    <div class='logo-container'>
+                        <img id='facebook-svg' src='{% static "facebook/media/facebook.svg" %}'>
+                    </div>
+                    <span id='logo-text'>
+                        Connect with friends and the world around you on Facebook.
+                    </span>
+                </div>
+                <div id='login-section'>
+                    <form id='login-form'>
+                        <input type="text" class='textfields' name="username" placeholder="Email or Phone Number" />
+                        <input type="password" class='textfields' name="password" placeholder="Password" />
+
+                        <input type="submit" value="Log In" />
+
+                        <div class='links'>
+
+                        </div>
+
+                        <a href='#' id='forgot-pass'>Forgot Password?</a>
+                        
+                        <hr />
+                        
+                        <a href='#' id='create-acc'>Create New Account</a> 
+                    </form>
+                    <div id='new-page-link'>
+                        <a href='#'>Create a Page</a> for a celebrity, band or business.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <ul id='lang-list'>
+            <li class='first'>English (US)</li>
+            <li><a href="https://ka-ge.facebook.com/">ქართული</a></li>
+            <li><a href="https://ru-ru.facebook.com/">Русский</a></li>
+            <li><a href="https://tr-tr.facebook.com/">Türkçe</a></li>
+            <li><a href="https://de-de.facebook.com/">Deutsch</a></li>
+            <li><a href="https://az-az.facebook.com/">Azərbaycan dili</a></li>
+            <li><a href="https://ar-ar.facebook.com/">العربية</a></li>
+            <li><a href="https://fr-fr.facebook.com/">Français (France)</a></li>
+            <li><a href="https://el-gr.facebook.com/">Ελληνικά</a></li>
+            <li><a href="https://es-la.facebook.com/">Español</a></li>
+            <li><a href="https://pt-br.facebook.com/">Português (Brasil)</a></li>
+        </ul>
+
+        <hr />
+
+        <ul id='services'>
+            <li><a href='#'>Sign Up</a></li>
+            <li><a href='#'>Log In</a></li>
+            <li><a href='#'>Messenger</a></li>
+            <li><a href='#'>Facebook Lite</a></li>
+            <li><a href='#'>Watch</a></li>
+            <li><a href='#'>People</a></li>
+            <li><a href='#'>Pages</a></li>
+            <li><a href='#'>Page Categories</a></li>
+            <li><a href='#'>Places</a></li>
+            <li><a href='#'>Games</a></li>
+            <li><a href='#'>Locations</a></li>
+            <li><a href='#'>Marketplace</a></li>
+            <li><a href='#'>Facebook Pay</a></li>
+            <li><a href='#'>Groups</a></li>
+            <li><a href='#'>Jobs</a></li>
+            <li><a href='#'>Oculus</a></li>
+            <li><a href='#'>Portal</a></li>
+            <li><a href='#'>Instagram</a></li>
+            <li><a href='#'>Local</a></li>
+            <li><a href='#'>Fundraisers</a></li>
+            <li><a href='#'>Services</a></li>
+            <li><a href='#'>Voting Information Center</a></li>
+            <li><a href='#'>About</a></li>
+            <li><a href='#'>Create Ad</a></li>
+            <li><a href='#'>Create Page</a></li>
+            <li><a href='#'>Developers</a></li>
+            <li><a href='#'>Careers</a></li>
+            <li><a href='#'>Privacy</a></li>
+            <li><a href='#'>Cookies</a></li>
+            <li><a href='#'>Ad Choices</a></li>
+            <li><a href='#'>Terms</a></li>              
+            <li><a href='#'>Help</a></li>              
+        </ul>
+
+        <span id='cc'>Facebook © 2021</span>
+
+    </footer>
+</body>
+</html>

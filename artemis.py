@@ -3,7 +3,7 @@ import sys
 import subprocess
 import time
 import re
-import requests
+import urllib.request
 
 from artemis_server.artemis_core import utils
 
@@ -91,8 +91,8 @@ def run():
                 exit()
 
             try:
-                api_data = requests.get('http://localhost:4040/api/tunnels').text
-            except requests.exceptions.ConnectionError:
+                api_data = urllib.request.urlopen('http://localhost:4040/api/tunnels').read().decode('utf-8')
+            except urllib.error.URLError:
                 print(utils.colorize('red', 'Failed to retrieve URL, trying again...'))
                 retry_counter += 1
                 time.sleep(2)

@@ -1,0 +1,254 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+#new-page-link > a:hover,
+#forgot-pass:hover {
+    text-decoration: underline;
+}
+
+@font-face {
+    font-family: SFProDisplay-Regular;
+    src: url('/media/SFProDisplay-Regular.ttf');
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    color: #1c1e21;
+    font-family: SFProDisplay-Regular, Helvetica, sans-serif;
+}
+
+main {
+    height: max-content;
+    min-height: 105vh;
+    width: 100%;
+    background-color: #f0f2f5;
+}
+
+.wrapper {
+    position: relative;
+    width: auto;
+    max-width: 1080px;
+    min-height: 536px;
+    padding: 72px 0px;
+    margin: 0px auto;
+}
+
+.content-container {
+    margin: 0px 40px;
+    padding: 20px 0px;
+}
+
+#logo-section {
+    display: inline-block;
+    width: 406px;
+}
+
+.logo-container {
+    padding: 116px 0px 16px 0px;
+}
+
+#facebook-svg {
+    width: 301px;
+    height: 106px;
+    margin: -28px;
+}
+
+#logo-text {
+    display: inline-block;
+    font-size: 28px;
+    line-height: 28px;
+    width: auto;
+    line-height: 1.2;
+}
+
+#login-section {
+    display: inline-block;
+    float: right;
+    width: 398px;
+    height: 496px;
+    padding-top: 40px;
+}
+
+#login-form {
+    width: 396px;
+    height: 349px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0px 24px;
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+}
+
+#login-form > input {
+    display: block;
+    width: 364px;
+    height: 52px;
+    min-height: 52px;
+    margin: 6px 0px;
+    border-radius: 6px;
+    border: 1px solid #f0f2f5;
+    font-size: 17px;
+    padding: 0px 15px;
+    caret-color: #1877f2;
+}
+
+::placeholder {
+    color: #888a8d;
+}
+
+#login-form > .textfields:focus {
+    outline: none;
+    border-color: #1877f2;
+
+}
+
+#login-form > .textfields:focus::placeholder {
+    color: #dadde1;
+}
+
+#login-form > input[type='submit'] {
+    background-color: #1877f2;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    display: block;
+    margin-top: 9px;
+    min-height: auto;
+    cursor: pointer;
+}
+
+#forgot-pass {
+    margin-top: 8px;
+    color: #1877f2;
+    font-size: 14px;
+}
+
+#login-form hr {
+    display: block;
+    margin: 20px 0px 12px;
+    height: 0px;
+    width: 364px;
+    border: none;
+    border-bottom: 1px solid #dadde1;;
+}
+
+#create-acc {
+    display: block;
+    background-color: #42b72a;
+    border: none;
+    border-radius: 6px;
+    height: 48px;
+    margin-top: 16px;
+    padding: 0px 16px;
+    color: white;
+    font-weight: 700;
+    line-height: 48px;
+    font-size: 17px;
+}
+
+#new-page-link {
+    text-align: center;
+    margin-top: 27px;
+}
+
+#new-page-link > a {
+    color: rgb(28, 30, 33);
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: .5px;
+}
+
+#lang-list,
+#services {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 12px;
+    line-height: 1.34;
+}
+
+#lang-list {
+    padding-top: 8px;
+}
+
+#lang-list li {
+    padding-right: 10px;
+}
+
+#services li {
+    padding-right: 20px;
+}
+
+#lang-list .first,
+#cc {
+    color: #737373;
+}
+
+#lang-list li,
+#services li {
+    list-style-type: none;
+    white-space: nowrap;
+}
+
+#lang-list a,
+#services a {
+    color : #385898;
+}
+
+#cc {
+    display: block;
+    line-height: 14px;
+    margin: 20px 0px;
+    font-size: 11px;
+}
+
+footer {
+    width: 980px;
+    margin: 0px auto;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+footer > hr {
+    margin: 8px 0px;
+    border: none;
+    border-bottom: 1px solid rgb(221, 223, 226);;
+}
+
+@media only screen and (max-width: 992px) {
+    #logo-text {
+        font-size: 24px;
+    }
+}
+    
+@media only screen and (max-width: 900px) {
+    .content-container,
+    #logo-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .logo-container {
+        padding-top: 0px;
+        padding-bottom: 19px;
+    }
+
+    .wrapper {
+        padding-top: 21px;
+    }
+}

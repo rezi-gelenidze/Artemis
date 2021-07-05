@@ -91,6 +91,9 @@ New template must have this filesystem:
 * all CSS files are directly stored in `css` directory
 * all Javascript files are directly stored in `js` directory
 * all media files are directly stored in `media` directory
+* if you want to capture user credentials when user submits form,
+your HTML template must include form with `POST` request on `/` route
+
 ```
 mytemplate/
 ├── index.html
@@ -125,5 +128,6 @@ mytemplate/
 	* ogg
 * fonts
 	* ttf 
+
 	
 
