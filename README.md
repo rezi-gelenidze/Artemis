@@ -26,7 +26,6 @@ Any actions and/or activities related to using this Artemis social engineering t
 *required python modules:
 - django (python web framework for Artemis server functioning)
 - whitenoise (static files manager for django web server)
-- requests (python library for web requests)
 
 Artemis automatically installs all required files
 and libraries if not installed (except python3)
