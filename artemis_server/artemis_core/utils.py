@@ -38,7 +38,6 @@ listing installed templates and analyzing existing template directories and file
 *required python modules:
 - django (python web framework for Artemis server functioning)
 - whitenoise (static files manager for django web server)
-- requests (python library for web requests)
 
 Artemis automatically installs all required files
 and libraries if not installed (except python3)
