@@ -15,12 +15,8 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+qwd)pm21&$08e4z$w-1xxl21mipuk^u!ng9=00l!z@(mbk_zq'
+SECRET_KEY = '7jll@d1)h1i^@h!5p5^g6@+ow5ky@8q)^v)z$am&lc2)+39_sn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -89,9 +85,7 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+# Static files (CSS, JavaScript, Media)
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
@@ -103,6 +97,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'artemis_core', 'static_deployed')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

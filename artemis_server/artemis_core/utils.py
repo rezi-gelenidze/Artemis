@@ -1,3 +1,4 @@
+import json
 import os
 import re
 import shutil
@@ -110,28 +111,7 @@ myNewTemplate/
     └── intro.mp4
 ```
 
-supported media files:
-- image
-    - png
-    - gif
-    - jpeg/jpg
-    - webp
-    - svg
-    - ico
-    - bmp
-- video
-    - mp4
-    - ogv
-    - mov
-    - webm
-- audio
-    - m4a
-    - mp3
-    - wav
-    - aac
-    - ogg
-- fonts
-    - ttf 
+Read README.md for more details.
 """
 
 
@@ -187,7 +167,17 @@ def validate_template_name(name):
         return False
     
     return True
+
+
+def validete_redirect_url(redirect_url):
+    url_pattern = r'(http(s):\/\/)(www\.)?[a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}([-a-zA-Z0-9@:%_\+.~#?&\/=])*'
     
+    match = re.match(url_pattern, redirect_url)
+    if match:
+        return match.group()
+    else:
+        return False
+
 
 def analyze_template(template):
     """ analyze template directory and list files """
@@ -206,8 +196,12 @@ def analyze_template(template):
     HTML_FILES = os.listdir(os.path.join(TEMPLATE_PATH, template))
 
     print(colorize('orange', 'HTML files:'))
-    for html in HTML_FILES:
-        print(f'\t- {html}')
+    for file in HTML_FILES:
+        # exclude config.json file from HTML directory
+        if file == 'config.json':
+            continue
+
+        print(f'\t- {file}')
 
     # list staticfiles if exist
     if template in os.listdir(STATIC_PATH):        
@@ -326,21 +320,42 @@ def add_template(original_template_path):
         # Check if template name is not taken
         if validate_template_name(template_name):
             break
-    
-    print(colorize('orange', 'Importing Template...'))
-
-    print(colorize('orange', 'Copying Files...'))
 
     specific_template_path = os.path.join(TEMPLATE_PATH, template_name)
 
-    # copy and format HTML files
+    # add config json file in a new template to save redirect URL
+    print(colorize('orange', 'add URL where target will be redirected after form submittion:'))
+    print(colorize('orange', 'ex: https://www.example.com/'))
+
+    while True:
+        url = input(shell_head)
+        redirect_url = validete_redirect_url(url)
+
+        if redirect_url:
+            break
     
     # capture src attributes linking local files to format it as a Django template link
     LINK_RE = r'''<[^>]*(?:src|href)\s*=\s*((?:'|")(?:(?:media|css|js)(?:\/|\\)[a-zA-Z0-9\-\?\/\\.\s]+)(?:'|"))[^<]*>'''
-
     file_head = '{% load static %}\n'
 
+    # make template dir
     os.mkdir(specific_template_path)
+
+    print(colorize('orange', f'adding [ {redirect_url} ] \nas redirect link in template config.json file...'))
+
+    # create json file and dump URL data
+    with open(os.path.join(specific_template_path, 'config.json'), 'w') as config:
+        config.write(
+            json.dumps({'redirect_to' : redirect_url})
+        )
+
+    print(colorize('green', 'URL configuration added successfully!'))        
+
+    # file copying operation
+    print(colorize('orange', 'Importing Template...'))
+    print(colorize('orange', 'Copying Files...'))
+    
+    # copy and format HTML files
 
     def replace(text):
         """ regex sub function for replacing link with django {% static ... %} """
