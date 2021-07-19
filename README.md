@@ -11,7 +11,7 @@ you are an able to capture user IP address, browser type and social
 network credentials, if the user types in tunneled template form 
 (ex. user typed his credentials in your fake Facebook login page). Artemis includes
 some popular social network cloned fake templates (Facebook, Messenger, Instagram and etc.),
-but it also includes template management system for adding a new template, removing existing,
+but it also includes template management system for adding a new template (you can add local staticfiles or just use CDN), removing existing,
 listing installed templates and analyzing existing template directories and files.
 
 
