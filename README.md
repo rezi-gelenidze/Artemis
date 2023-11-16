@@ -1,132 +1,70 @@
-# Artemis - automated Social Engineering tool
-#### v1.0 release, June 2021
+# Artemis - Automated Social Engineering Tool
+#### Version 1.0 - Released June 2021
 
-Developer: **Rezi Gelenidze**
-Github repository: https://github.com/rezi-gelenidze/artemis
+Developed by: **Rezi Gelenidze**
+GitHub Repository: [Artemis](https://github.com/rezi-gelenidze/artemis)
 
-### Description
-Artemis provides automated and flexible phishing functionalities,
-you can tunnel any template via secured HTTPS with ngrok tunnel,
-you are an able to capture user IP address, browser type and social
-network credentials, if the user types in tunneled template form 
-(ex. user typed his credentials in your fake Facebook login page). Artemis includes
-some popular social network cloned fake templates (Facebook, Messenger, Instagram and etc.),
-but it also includes template management system for adding a new template (you can add local staticfiles or just use CDN), removing existing,
-listing installed templates and analyzing existing template directories and files.
+## Description
+Artemis is an advanced social engineering tool that automates phishing operations with ease and flexibility. It enables users to tunnel phishing templates securely via HTTPS using ngrok, capturing critical information like user IP addresses, browser types, and social network credentials. Artemis comes equipped with cloned templates of popular social networks (Facebook, Messenger, Instagram, etc.) and offers a robust template management system to add, remove, and analyze templates.
 
+### Features
+- **Secure Tunneling**: Utilize ngrok for HTTPS tunneling of phishing templates.
+- **Information Capture**: Efficiently capture user details and credentials.
+- **Template Management**: In-built system for managing and customizing phishing templates.
+- **Static File Support**: Seamlessly integrate static files or use CDN for template creation.
 
-### **Disclaimer**
-Any actions and/or activities related to using this Artemis social engineering tool is solely your responsibility, this tool is for **EDUCATIONAL PURPOSES ONLY** . The misuse of this tool can result in criminal charges brought against the persons in question. The developer will not be held responsible in the event any criminal charges be brought against any individuals misusing this tool to break the law.
+### Disclaimer
+Artemis is developed for **EDUCATIONAL PURPOSES ONLY**. Any illegal use of this tool is strictly prohibited, and the developer assumes no responsibility for misuse or criminal charges resulting from improper use. Users are responsible for adhering to their local laws and regulations.
 
+## Requirements
+- Python 3 (Interpreter)
+- Ngrok (Executable for HTTPS tunneling)
 
-### requirements
-- python3 (python interpreter)
-- ngrok (ngrok executable for safe https tunneling)
+### Required Python Modules
+- Django (For server functionality)
+- Whitenoise (Static file management)
 
-*required python modules:
-- django (python web framework for Artemis server functioning)
-- whitenoise (static files manager for django web server)
+Artemis automatically installs all necessary files and libraries (except Python 3).
 
-Artemis automatically installs all required files
-and libraries if not installed (except python3)
+## Commands
 
-
-### commands
-
-
-#### -h | --help
-
-outputs this help text.
-
-`$ python3 artemis.py -h`
-
-#### -l | --list [TEMPLATE_NAME]
-
-outputs list of installed templates. If TEMPLATE_NAME is
-present, specific template is analyzed and information is listed.
-
-`$ python3 artemis.py -l`
-`$ python3 artemis.py -l facebook`
-
-
-#### -r | --remove [TEMPLATE_NAME]
-
-command for removing existing template and its files.
-Command firstly outputs template details and directories,
-and asks user if he really wants to remove template.
-If user proceeds, all template static and HTML files are removed.
-
-`$ python3 artemis.py -r facebook`
-
-
-#### -d | --deploy [--replace]
-
-manual deploying for Django staticfiles.
-This command offers automatic deployment of static files
-for Django web server (Django uses whitenoise static file manager).
-if command is executed Artemis creates folder for deployed staticfiles if not present,
-or merges new staticfiles with existing ones. if --replace argument is provided, old staticfiles
-folder is deleted and new one is created with new files only (no merging with old files).
-
-`$ python3 artemis.py -d`
-`$ python3 artemis.py -d --replace`
-
-
-#### -a | --add [TEMPLATE_PATH]
-
-initialized new template from given absolute or relative path (TEMPLATE_PATH), checks its
-validity and then asks user to provide name for newly created template.
-When name is provided, all valid files are copied in Artemis management
-directories and newly copied HTML file is modified to support Django templating
-language.
-
-`$ python3 artemis.py -a /home/user/Desktop/my_template`
-
-#### New template content
-
-when new template is added, artemis scans it's directory, determines it's validity and tries to copy supported content.
-New template must have this filesystem:
-* contains at least one HTML file, named `index.html`
-* all CSS files are directly stored in `css` directory
-* all Javascript files are directly stored in `js` directory
-* all media files are directly stored in `media` directory
-* if you want to capture user credentials when user submits form,
-your HTML template must include form with `POST` request on `/` route
-
+### `-h | --help`
+Outputs help text.
 ```
-mytemplate/
-├── index.html
-├── css/
-│   └── style.css
-├── js/
-│	└── script.js
-└── media/
-    ├── background.png
-    ├── icon.ico
-    └── intro.mp4
+$ python3 artemis.py -h
 ```
-#### supported media files:
-* image
-	* png
-	* gif
-	* jpeg/jpg
-	* webp
-	* svg
-	* ico
-	* bmp
-* video
-	* mp4
-	* ogv
-	* mov
-	* webm
-* audio
-	* m4a
-	* mp3
-	* wav
-	* aac
-	* ogg
-* fonts
-	* ttf 
 
-	
+### `-l | --list [TEMPLATE_NAME]`
+Lists installed templates. Details a specific template if `TEMPLATE_NAME` is provided.
+```
+$ python3 artemis.py -l
+$ python3 artemis.py -l facebook
+```
 
+### `-r | --remove [TEMPLATE_NAME]`
+Removes a specified template after confirmation.
+```
+$ python3 artemis.py -r facebook
+```
+
+### `-d | --deploy [--replace]`
+Deploys static files for the Django web server. Use `--replace` to remove old files.
+```
+$ python3 artemis.py -d
+$ python3 artemis.py -d --replace
+```
+
+### `-a | --add [TEMPLATE_PATH]`
+Adds a new template from a specified path.
+```
+$ python3 artemis.py -a /home/user/Desktop/my_template
+```
+
+### Adding a New Template
+Ensure the new template adheres to the specified filesystem for seamless integration.
+
+#### Supported Media Files:
+- Images: png, gif, jpeg/jpg, webp, svg, ico, bmp
+- Video: mp4, ogv, mov, webm
+- Audio: m4a, mp3, wav, aac, ogg
+- Fonts: ttf
