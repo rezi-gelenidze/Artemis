@@ -91,7 +91,8 @@ def run():
                 exit()
 
             try:
-                api_data = urllib.request.urlopen('http://localhost:4040/api/tunnels').read().decode('utf-8')
+                api_data = urllib.request.urlopen('http://127.0.0.1:4040/api/tunnels').read().decode('utf-8')
+
             except urllib.error.URLError:
                 print(utils.colorize('red', 'Failed to retrieve URL, trying again...'))
                 retry_counter += 1
@@ -100,13 +101,15 @@ def run():
 
             # match URL in data
             ngrok_url = re.findall(
-                r'https://[a-zA-Z0-9]+\.ngrok\.io', api_data
+                r'https:\/\/[a-zA-Z0-9-]+\.ngrok-free\.app', api_data
             )
 
             if ngrok_url:
                 ngrok_url = ngrok_url[0]
 
                 print(utils.colorize('green', 'Tunnel initialized successfully!'))
+                print(utils.colorize('blue', 'Don\'t forget to add your authtoken shown in your ngrok account dashboard:'))
+                print(utils.colorize('blue', '$ ./ngrok authtoken <enter-your-token>'))
             else:
                 retry_counter += 1
                 print(utils.colorize('red', 'Failed to tunnel and retrieve URL, trying again...'))
